@@ -1,4 +1,10 @@
-# Description #
+# Payara Issue
+
+This repo was created as a reproducer for this ticket
+
+	https://github.com/payara/Payara/issues/5095
+
+# Description
 --------------------
 
 In a @DatasourceDefinition the 'className' property cannot be configured using "${ENV:ENVIRONMENT_VARIABLE_NAME}"
