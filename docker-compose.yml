@@ -1,0 +1,37 @@
+version: '2.2'
+services:
+    payara-micro:
+        image: payara/micro:latest
+        environment:
+        - DB_DRIVER=org.postgresql.xa.PGXADataSource
+        - DB_JDBC_URL=jdbc:postgresql://db:5432/database
+        - DB_SERVER=db
+        - DB_USER=database
+        - DB_PASSWORD=database
+        - DB_DATABASE=database
+        ports:
+         - "7080:8080"
+         - "7443:8443"
+         - "54848:4848"
+         - "5005:5005"
+        volumes:
+        - ./target:/opt/payara/deployments
+        entrypoint: ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=90.0", "-jar", "payara-micro.jar"]
+        command: ["--deploymentDir", "/opt/payara/deployments", "--nocluster"]
+    db:
+        image: postgres:9.6-alpine
+        environment:
+        - POSTGRES_PASSWORD=database
+        - POSTGRES_USER=database
+        - POSTGRES_DB=database
+        ports:
+        - "55432:5432"
+        volumes:
+        - test-db-data:/var/lib/postgresql/data
+volumes:
+  test-db-data:
+
+#networks: 
+#  default: 
+#    external: 
+#      name: local-iddocserver-development_default
