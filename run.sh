@@ -1,8 +1,9 @@
 #!/bin/bash
 
+export DB_TYPE=postgresql
 export DB_DRIVER="org.postgresql.xa.PGXADataSource"
-#export DB_SERVER="db"
-export DB_JDBC_URL="jdbc:postgresql://db:55432/database"
+export DB_SERVER="db"
+export DB_URL="//db:55432/database"
 export DB_USER="database"
 export DB_PASSWORD="database"
 

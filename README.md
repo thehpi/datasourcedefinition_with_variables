@@ -4,6 +4,12 @@ This repo was created as a reproducer for this ticket
 
 [https://github.com/payara/Payara/issues/5095](https://github.com/payara/Payara/issues/5095)
 
+# Update
+
+This issue is fixed through [this pull request](https://github.com/payara/Payara/pull/5142)
+
+It was release in payara 5.2021.2.
+ 
 # Description
 --------------------
 
@@ -15,8 +21,9 @@ If I use this in the web.xml however (currently web.xml.old) then it does work!
 
 If I set the vars:
 
+- DB_TYPE=postgresql
 - DB_DRIVER=org.postgresql.xa.PGXADataSource
-- DB_JDBC_URL=jdbc:postgresql://db:5432/database
+- DB_URL=DB_URL=//db:55432/database
 - DB_SERVER=db
 - DB_USER=database
 - DB_PASSWORD=database
@@ -27,7 +34,7 @@ And use this definition
     name = "java:global/myDS",
     className = "${ENV=DB_DRIVER}",
     serverName = "${ENV=DB_SERVER}",
-    url = "${ENV=DB_JDBC_URL}",
+    url = "jdbc:${ENV=DB_TYPE}:${ENV=DB_URL}",
     user = "${ENV=DB_USER}",
     password = "${ENV=DB_PASSWORD}"
     )

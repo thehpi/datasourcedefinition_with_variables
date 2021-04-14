@@ -1,14 +1,14 @@
 version: '2.2'
 services:
     payara-micro:
-        image: payara/micro:latest
+        image: payara/micro:5.2021.2
         environment:
+        - DB_TYPE=postgresql
         - DB_DRIVER=org.postgresql.xa.PGXADataSource
-        - DB_JDBC_URL=jdbc:postgresql://db:5432/database
+        - DB_URL=//db:5432/database
         - DB_SERVER=db
         - DB_USER=database
         - DB_PASSWORD=database
-        - DB_DATABASE=database
         ports:
          - "7080:8080"
          - "7443:8443"

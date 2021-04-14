@@ -33,7 +33,7 @@ public class TestResource {
   String dbUser;
 
   @Inject
-  @ConfigProperty(name = "DB_JDBC_URL")
+  @ConfigProperty(name = "DB_URL")
   String jdbcUrl;
 
   @GET
